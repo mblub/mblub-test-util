@@ -1,15 +1,16 @@
 package com.mblub.unit;
 
+import static org.mockito.ArgumentMatchers.argThat;
+
 import java.util.function.Predicate;
 
 import org.mockito.ArgumentMatcher;
-import org.mockito.Matchers;
 
 public class FunctionalMatchers {
 
   public static <T> T argThatMatches(Predicate<T> predicate) {
     LambdaMatcher<T> matcher = new LambdaMatcher<>(predicate);
-    return Matchers.argThat(matcher);
+    return argThat(matcher);
   }
 
   public static class LambdaMatcher<T> implements ArgumentMatcher<T> {
