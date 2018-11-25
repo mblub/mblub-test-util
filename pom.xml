@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mblub.util</groupId>
   <artifactId>mblub-test-util</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>Testing Utilities</name>
   <properties>
     <jdk.version>1.8</jdk.version>
@@ -119,4 +119,16 @@
       <version>5.1.0</version>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <name>7f28736d2d6c-snapshots</name>
+      <url>http://10.0.0.108:9091/artifactory/libs-snapshot</url>
+    </snapshotRepository>
+    <repository>
+      <id>central</id>
+      <name>7f28736d2d6c-releases</name>
+      <url>http://10.0.0.108:9091/artifactory/libs-release</url>
+    </repository>
+  </distributionManagement>
 </project>
