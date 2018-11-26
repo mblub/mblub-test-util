@@ -132,9 +132,9 @@
     </repository>
   </distributionManagement>
   <scm>
-    <connection>scm:git:ssh://git@chopin:10022/mblub/mblub-test-util.git</connection>
-    <developerConnection>scm:git:git@chopin:10022/mblub/mblub-test-util.git</developerConnection>
-    <url>https://chopin:10022/mblub/mblub-test-util</url>
+    <connection>${scm.connection}/mblub-test-util.git</connection>
+    <developerConnection>${scm.connection}/mblub-test-util.git</developerConnection>
+    <url>${scm.url}/mblub-test-util</url>
     <tag>HEAD</tag>
   </scm>
 </project>
