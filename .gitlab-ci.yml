@@ -23,7 +23,7 @@ build:
 deploy:
   stage: deploy
   script:
-    - cat $CI_PROJECT_DIR
+    - cat $CI_PROJECT_DIR/.m2/settings.xml
     - mvn $MAVEN_CLI_OPTS help:effective-pom
     - mvn -X $MAVEN_CLI_OPTS deploy
   only:
