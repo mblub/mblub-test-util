@@ -142,10 +142,10 @@
       <url>http://10.0.0.108:9091/artifactory/libs-release</url>
     </repository>
   </distributionManagement> -->
-  <scm>
+  <!-- <scm>
     <connection>${project.scm.connection}/mblub-test-util.git</connection>
     <developerConnection>${project.scm.connection}/mblub-test-util.git</developerConnection>
     <url>${project.scm.url}/mblub-test-util</url>
-    <tag>HEAD</tag>
+    <tag>HEAD</tag> -->
   </scm>
 </project>
