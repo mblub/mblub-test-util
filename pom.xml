@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mblub.util</groupId>
   <artifactId>mblub-test-util</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
+  <version>1.0.7</version>
   <name>Testing Utilities</name>
   <properties>
     <jdk.version>1.8</jdk.version>
@@ -146,6 +146,6 @@
     <connection>${scm.connection}/mblub-test-util.git</connection>
     <developerConnection>${scm.connection}/mblub-test-util.git</developerConnection>
     <url>${scm.url}/mblub-test-util</url>
-    <tag>HEAD</tag>
+    <tag>mblub-test-util-1.0.7</tag>
   </scm>
 </project>
