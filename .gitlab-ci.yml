@@ -18,11 +18,11 @@ cache:
 build:
   stage: build
   script:
-    - mvn clean test
+    - mvn $MAVEN_CLI_OPTS clean test
 
 deploy:
   stage: deploy
   script:
-    - mvn deploy
+    - mvn $MAVEN_CLI_OPTS deploy
   only:
     - work
