@@ -53,8 +53,11 @@ release:
     - git config --global -l
     - git remote set-url --push origin ssh://$SCM_URL/$CI_PROJECT_NAME
     - git remote -vv
-    - mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
-    - mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
+    - git mv .gitlab-ci.yml disabled.gitlab-ci.yml
+    - git commit -m "disable gitlab ci"
+    - git push origin master
+    #- mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
+    #- mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
   only:
     - master
 
