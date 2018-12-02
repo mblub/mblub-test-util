@@ -15,21 +15,7 @@ cache:
   paths:
     - .m2/repository
 
-build:
-  stage: build
-  script:
-    - mvn $MAVEN_CLI_OPTS clean test
-
-deploy snapshot:
-  stage: deploy
-  script:
-    - mvn $MAVEN_CLI_OPTS deploy
-  only:
-    - work
-
-release:
-  stage: deploy
-  script:
+before_script:
     - printenv
     # Install ssh-agent if not already installed, it is required by Docker.
     # (change apt-get to yum if you use a CentOS-based image)
@@ -47,6 +33,22 @@ release:
     # you will overwrite your user's SSH config.
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+
+build:
+  stage: build
+  script:
+    - mvn $MAVEN_CLI_OPTS clean test
+
+deploy snapshot:
+  stage: deploy
+  script:
+    - mvn $MAVEN_CLI_OPTS deploy
+  only:
+    - work
+
+release:
+  stage: deploy
+  script:
     - git checkout -B "$CI_BUILD_REF_NAME"
     - git config --global user.email "$GITLAB_USER_EMAIL"
     - git config --global user.name "$GITLAB_USER_NAME"
