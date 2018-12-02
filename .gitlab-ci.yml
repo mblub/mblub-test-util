@@ -19,6 +19,10 @@ build:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS clean test
+  except:
+     variables:
+        - $CI_COMMIT_MESSAGE =~ /^\[maven-release-plugin\] /
+
 
 deploy snapshot:
   stage: deploy
