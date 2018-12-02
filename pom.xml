@@ -143,9 +143,9 @@
     </repository>
   </distributionManagement> -->
   <scm>
-    <connection>${scm.connection}/mblub-test-util.git</connection>
-    <developerConnection>${scm.connection}/mblub-test-util.git</developerConnection>
-    <url>${scm.url}/mblub-test-util</url>
+    <connection>${project.scm.connection}/mblub-test-util.git</connection>
+    <developerConnection>${project.scm.connection}/mblub-test-util.git</developerConnection>
+    <url>${project.scm.url}/mblub-test-util</url>
     <tag>HEAD</tag>
   </scm>
 </project>
