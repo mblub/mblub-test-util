@@ -130,18 +130,18 @@
       <version>5.1.0</version>
     </dependency>
   </dependencies>
-<!--   <distributionManagement>
+  <distributionManagement>
     <snapshotRepository>
-      <id>snapshots</id>
-      <name>7f28736d2d6c-snapshots</name>
-      <url>http://10.0.0.108:9091/artifactory/libs-snapshot</url>
+      <id>snapshot-local</id>
+      <name>libs-snapshot-local</name>
+      <url>http://10.0.0.108:9091/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
     <repository>
-      <id>central</id>
-      <name>7f28736d2d6c-releases</name>
+      <id>release-local</id>
+      <name>libs-release-local</name>
       <url>http://10.0.0.108:9091/artifactory/libs-release</url>
     </repository>
-  </distributionManagement> -->
+  </distributionManagement>
   <!-- <scm>
     <connection>${project.scm.connection}/mblub-test-util.git</connection>
     <developerConnection>${project.scm.connection}/mblub-test-util.git</developerConnection>
