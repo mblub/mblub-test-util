@@ -18,6 +18,7 @@ cache:
 before_script:
   - git config --global user.email "mblubaugh@gmail.com"
   - git config --global user.name "Gitlab Runner"
+  - git config --global -l
 
 build:
   stage: build
@@ -51,8 +52,10 @@ release:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - git checkout -B "$CI_BUILD_REF_NAME"
-    - mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
-    - mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
+    - git status
+    - git remote -vv
+    #- mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
+    #- mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
   only:
     - master
 
