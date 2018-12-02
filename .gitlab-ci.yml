@@ -52,11 +52,9 @@ release:
     - git config --global user.name "$GITLAB_USER_NAME"
     - git config --global -l
     - git remote set-url --push origin ssh://$SCM_URL/$CI_PROJECT_NAME
-    - git config --global -l
-    - git status
     - git remote -vv
-    #- mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
-    #- mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
+    - mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
+    - mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
   only:
     - master
 
