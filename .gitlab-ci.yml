@@ -48,11 +48,10 @@ release:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - git checkout -B "$CI_BUILD_REF_NAME"
-    - git config --global user.email "mblubaugh@gmail.com"
-    - git config --global user.name "Gitlab Runner"
+    - git config --global user.email "$GITLAB_USER_EMAIL"
+    - git config --global user.name "$GITLAB_USER_NAME"
     - git config --global -l
-    - echo $CI_BUILD_REPO
-    - echo git remote set-url --push origin $(echo $CI_BUILD_REPO | perl -pe 's#.*@(.+?(\:\d+)?)/#git@\1:#')
+    - git remote set-url --push origin ssh://$SCM_URL/$CI_PROJECT_NAME
     - git config --global -l
     - git status
     - git remote -vv
