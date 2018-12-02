@@ -47,8 +47,8 @@ release:
     - mkdir -p ~/.ssh
     - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
     - git checkout -B "$CI_BUILD_REF_NAME"
-    - mvn $MAVEN_CLI_OPTS -DdryRun=true release:prepare -B -DskipTests=true
-    # - mvn release:perform --settings .ci/settings.xml -B -DskipTests=true    
+    - mvn $MAVEN_CLI_OPTS release:prepare -B -DskipTests=true
+    - mvn $MAVEN_CLI_OPTS release:perform -B -DskipTests=true
   only:
     - master
 
