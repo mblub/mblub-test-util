@@ -134,18 +134,18 @@
     <snapshotRepository>
       <id>snapshot-local</id>
       <name>libs-snapshot-local</name>
-      <url>http://10.0.3.6:8081/artifactory/libs-snapshot-local</url>
+      <url>${maven.repo.url}/libs-snapshot-local</url>
     </snapshotRepository>
     <repository>
       <id>release-local</id>
       <name>libs-release-local</name>
-      <url>http://10.0.3.6:8081/artifactory/libs-release</url>
+      <url>${maven.repo.url}/libs-release</url>
     </repository>
   </distributionManagement>
-  <!-- <scm>
-    <connection>${project.scm.connection}/mblub-test-util.git</connection>
-    <developerConnection>${project.scm.connection}/mblub-test-util.git</developerConnection>
-    <url>${project.scm.url}/mblub-test-util</url>
+  <scm>
+    <connection>${scm.connection}/mblub-test-util.git</connection>
+    <developerConnection>${scm.connection}/mblub-test-util.git</developerConnection>
+    <url>${scm.url}/mblub-test-util</url>
     <tag>HEAD</tag>
-  </scm> -->
+  </scm>
 </project>
