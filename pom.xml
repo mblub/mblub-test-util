@@ -130,7 +130,7 @@
       <version>5.1.0</version>
     </dependency>
   </dependencies>
-  <distributionManagement>
+<!--   <distributionManagement>
     <snapshotRepository>
       <id>snapshots</id>
       <name>7f28736d2d6c-snapshots</name>
@@ -141,7 +141,7 @@
       <name>7f28736d2d6c-releases</name>
       <url>http://10.0.0.108:9091/artifactory/libs-release</url>
     </repository>
-  </distributionManagement>
+  </distributionManagement> -->
   <scm>
     <connection>${scm.connection}/mblub-test-util.git</connection>
     <developerConnection>${scm.connection}/mblub-test-util.git</developerConnection>
