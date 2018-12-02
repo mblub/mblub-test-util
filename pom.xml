@@ -134,12 +134,12 @@
     <snapshotRepository>
       <id>snapshot-local</id>
       <name>libs-snapshot-local</name>
-      <url>http://10.0.0.108:9091/artifactory/libs-snapshot-local</url>
+      <url>http://10.0.3.6:8081/artifactory/libs-snapshot-local</url>
     </snapshotRepository>
     <repository>
       <id>release-local</id>
       <name>libs-release-local</name>
-      <url>http://10.0.0.108:9091/artifactory/libs-release</url>
+      <url>http://10.0.3.6:8081/artifactory/libs-release</url>
     </repository>
   </distributionManagement>
   <!-- <scm>
