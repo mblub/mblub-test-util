@@ -9,9 +9,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ListPrintWriter extends PrintWriter {
+  private int flushCount;
 
   public ListPrintWriter() {
     super(new StringWriter());
+    flushCount = 0;
   }
 
   public List<String> getResultLines() {
@@ -24,5 +26,15 @@ public class ListPrintWriter extends PrintWriter {
     String resultString = sw.toString();
     BufferedReader reader = new BufferedReader(new StringReader(resultString));
     return reader.lines();
+  }
+
+  public int getFlushCount() {
+    return flushCount;
+  }
+
+  @Override
+  public void flush() {
+    flushCount += 1;
+    super.flush();
   }
 }

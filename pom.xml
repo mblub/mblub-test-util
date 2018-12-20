@@ -139,7 +139,7 @@
     <repository>
       <id>release-local</id>
       <name>libs-release-local</name>
-      <url>${maven.repo.url}/libs-release</url>
+      <url>${maven.repo.url}/libs-release-local</url>
     </repository>
   </distributionManagement>
   <scm>
