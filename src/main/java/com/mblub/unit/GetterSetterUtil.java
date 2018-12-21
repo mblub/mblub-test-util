@@ -12,6 +12,8 @@ import java.util.Map;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Helper for testing basic getters and setters of a class.
@@ -23,6 +25,7 @@ import org.apache.commons.lang3.StringUtils;
  * 
  */
 public class GetterSetterUtil {
+  private static final Logger LOG = LogManager.getLogger(GetterSetterUtil.class);
 
   // Map of recognized classes to object generators
   private static final Map<Class<?>, ObjectGenerator> OBJECT_GENERATOR_MAP = buildObjectGeneratorMap();
@@ -131,9 +134,9 @@ public class GetterSetterUtil {
     try {
       constructor = classUnderTest.getConstructor();
     } catch (SecurityException se) {
-      log("Skipping class " + classUnderTest.getName() + " due to SecurityException: " + se);
+      LOG.debug("Skipping class " + classUnderTest.getName() + " due to SecurityException: " + se);
     } catch (NoSuchMethodException nsme) {
-      log("Skipping class " + classUnderTest.getName() + " because no-argument constructor is not declared.");
+      LOG.debug("Skipping class " + classUnderTest.getName() + " because no-argument constructor is not declared.");
     }
   }
 
@@ -145,7 +148,7 @@ public class GetterSetterUtil {
    */
   public void runTest() throws Exception {
     if (constructor != null) {
-      log("Testing class " + classUnderTest.getName() + " for fields of recognized types (" + RECOGNIZED_TYPES
+      LOG.debug("Testing class " + classUnderTest.getName() + " for fields of recognized types (" + RECOGNIZED_TYPES
               + ")...");
       for (Field field : classUnderTest.getDeclaredFields()) {
         testFieldIfIncluded(field);
@@ -163,9 +166,9 @@ public class GetterSetterUtil {
    */
   protected void testFieldIfIncluded(Field field) throws Exception {
     if (Modifier.isStatic(field.getModifiers())) {
-      log("  Skipping field " + field.getName() + " because it is static.");
+      LOG.debug("  Skipping field " + field.getName() + " because it is static.");
     } else if (Modifier.isFinal(field.getModifiers())) {
-      log("  Skipping field " + field.getName() + " because it is final.");
+      LOG.debug("  Skipping field " + field.getName() + " because it is final.");
     } else {
       boolean isFound = false;
       for (Class<?> recognizedClass : OBJECT_GENERATOR_MAP.keySet()) {
@@ -176,7 +179,7 @@ public class GetterSetterUtil {
         }
       }
       if (!isFound) {
-        log("  Skipping field " + field.getName() + " because its type (" + field.getType().getName()
+        LOG.debug("  Skipping field " + field.getName() + " because its type (" + field.getType().getName()
                 + ") is not recognized.");
       }
     }
@@ -214,11 +217,11 @@ public class GetterSetterUtil {
         assertEquals("Value returned by method " + getterName + " after setting field " + fieldName, expectedValue,
                 actualValue);
       } else {
-        log("  Skipping getter for field " + fieldName + " because " + getterName + "() returns "
+        LOG.debug("  Skipping getter for field " + fieldName + " because " + getterName + "() returns "
                 + getter.getReturnType().getName() + ", not " + field.getType().getName());
       }
     } catch (NoSuchMethodException nsme) {
-      log("  Skipping getter for field " + fieldName + " because " + getterName + "() is not declared.");
+      LOG.debug("  Skipping getter for field " + fieldName + " because " + getterName + "() is not declared.");
     }
 
     String setterName = "set" + StringUtils.capitalize(fieldName);
@@ -231,11 +234,11 @@ public class GetterSetterUtil {
         assertEquals("Value of field " + fieldName + " after invoking method " + setterName, expectedValue,
                 actualValue);
       } else {
-        log("  Skipping setter for field " + fieldName + " because " + setterName + "(" + field.getType().getName()
-                + ") returns " + setter.getReturnType().getName() + ", not void.");
+        LOG.debug("  Skipping setter for field " + fieldName + " because " + setterName + "("
+                + field.getType().getName() + ") returns " + setter.getReturnType().getName() + ", not void.");
       }
     } catch (NoSuchMethodException nsme) {
-      log("  Skipping setter for field " + fieldName + " because " + setterName + "(" + field.getType().getName()
+      LOG.debug("  Skipping setter for field " + fieldName + " because " + setterName + "(" + field.getType().getName()
               + ") is not declared.");
     }
 
@@ -250,12 +253,12 @@ public class GetterSetterUtil {
                 actualValue);
         org.junit.jupiter.api.Assertions.assertSame(objectUnderTest, actualResult, "result of method " + witherName);
       } else {
-        log("  Skipping \"with\" method for field " + fieldName + " because " + witherName + "("
+        LOG.debug("  Skipping \"with\" method for field " + fieldName + " because " + witherName + "("
                 + field.getType().getName() + ") returns " + wither.getReturnType().getName() + ", not "
                 + classUnderTest + ".");
       }
     } catch (NoSuchMethodException nsme) {
-      log("  Skipping \"with\" method for field " + fieldName + " because " + witherName + "("
+      LOG.debug("  Skipping \"with\" method for field " + fieldName + " because " + witherName + "("
               + field.getType().getName() + ") is not declared.");
     }
   }
@@ -286,18 +289,6 @@ public class GetterSetterUtil {
    */
   protected void assertEquals(String description, Object expectedValue, Object actualValue) throws Exception {
     org.junit.jupiter.api.Assertions.assertEquals(expectedValue, actualValue, description);
-  }
-
-  /**
-   * Local log helper
-   * 
-   * @param message
-   *          message
-   */
-  protected void log(String message) {
-    // TODO: configure log4j for maven-surefire-plugin, and use log4j here
-    // instead of System.out
-    System.out.println(message);
   }
 
   /**
