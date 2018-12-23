@@ -69,6 +69,14 @@ public class Log4j2TestingUtil {
     }
   }
 
+  public static List<String> getActualLogMessages() {
+    return actualLogMessages;
+  }
+
+  public static List<LogEventExtract> getActualLogEventExtracts() {
+    return actualLogEventExtracts;
+  }
+
   public static void assertLogMessages(String... expectLogMessages) {
     assertThat("log4j2 messages", actualLogMessages, contains(expectLogMessages));
   }
