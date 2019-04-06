@@ -19,22 +19,32 @@ public class Assertions {
   }
 
   public static <T> void assertStreamContents(String context, Stream<T> expectStream, Stream<T> actualStream) {
-    assertIteratorContents(context, expectStream.iterator(), actualStream.iterator());
+    assertIteratorContents(context, true, expectStream.iterator(), actualStream.iterator());
   }
 
   public static <T> void assertIteratorContents(Iterator<T> expectIter, Iterator<T> actualIter) {
-    assertIteratorContents(null, expectIter, actualIter);
+    assertIteratorContents(null, false, expectIter, actualIter);
+  }
+
+  public static <T> void assertIteratorContents(boolean isLines, Iterator<T> expectIter, Iterator<T> actualIter) {
+    assertIteratorContents(null, isLines, expectIter, actualIter);
+  }
+
+  public static <T> void assertIteratorContents(String context, Iterator<T> expectIter, Iterator<T> actualIter) {
+    assertIteratorContents(context, false, expectIter, actualIter);
   }
 
   private static String getContextPrefix(String context) {
     return StringUtils.isEmpty(context) ? "" : context + ": ";
   }
 
-  public static <T> void assertIteratorContents(String context, Iterator<T> expectIter, Iterator<T> actualIter) {
+  public static <T> void assertIteratorContents(String context, boolean isLines, Iterator<T> expectIter,
+          Iterator<T> actualIter) {
     String contextPrefix = getContextPrefix(context);
-    int itemIdx = 0;
+    int itemIdx = (isLines ? 1 : 0);
     while (expectIter.hasNext() && actualIter.hasNext()) {
-      assertEquals(contextPrefix + "item " + itemIdx + " differs", expectIter.next(), actualIter.next());
+      assertEquals(contextPrefix + (isLines ? "line " : "item ") + itemIdx + " differs", expectIter.next(),
+              actualIter.next());
       itemIdx += 1;
     }
     assertFalse(contextPrefix + "actual has " + itemIdx + " entries, but expected more", expectIter.hasNext());
